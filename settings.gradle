@@ -1,25 +1,17 @@
 pluginManagement {
     repositories {
-        google()          // 必须：用于下载 Android 官方库（如 androidx、play-services 等）
-        mavenCentral()    // 可选：如果你暂时不想完全用腾讯云镜像，可以保留
-        gradlePluginPortal() // 必须：Gradle 插件仓库
+        google()          // Android 官方插件和库，比如 AGP、AndroidX
+        mavenCentral()    // 标准第三方库，比如 Retrofit, Glide, Kotlinx 等
+        gradlePluginPortal() // Gradle 插件仓库，比如 com.android.tools.build:gradle
     }
 }
 
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositoriesMode.set('PREFER_PROJECT')  // 或者直接删除这一行也可以（默认就是 PREFER_PROJECT）
     repositories {
-        google()  // 必须：Android 官方库
-
-        // ✅ 使用腾讯云公共 Maven 镜像（推荐替代 mavenCentral）
-        maven {
-            url "https://mirrors.cloud.tencent.com/nexus/repository/maven-public/"
-            // 可选：加上 name 方便识别
-            name "Tencent Maven Public Mirror"
-        }
-
-        // 如果你发现某些库在腾讯云镜像中找不到，可以再添加 mavenCentral()
-        // mavenCentral()  // 可选备用，如果腾讯云缺失某些库
+        google()  // Android 官方库，必须
+        mavenCentral()  // 第三方库，必须
+        // 如果有特殊需求，比如公司私有仓库，可以在这里添加
     }
 }
 
