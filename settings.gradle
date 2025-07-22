@@ -7,7 +7,6 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
-    repositoriesMode.set('PREFER_PROJECT')  // 或者直接删除这一行也可以（默认就是 PREFER_PROJECT）
     repositories {
         google()  // Android 官方库，必须
         mavenCentral()  // 第三方库，必须
