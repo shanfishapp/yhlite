@@ -1,0 +1,89 @@
+name: Build and Deploy APK
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  build:
+    name: Build Debug APK and Push to output branch
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: 'gradle'
+
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
+
+    - name: Cache Gradle dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+
+    - name: Configure Aliyun Maven Mirror
+      run: |
+        cat > settings.gradle << 'EOF'
+        pluginManagement {
+            repositories {
+                gradlePluginPortal()
+                google()
+                mavenCentral()
+            }
+        }
+
+        dependencyResolutionManagement {
+            repositoriesMode.set(PREFER_SETTINGS)
+            repositories {
+                maven { url 'https://maven.aliyun.com/repository/google ' }
+                maven { url 'https://maven.aliyun.com/repository/public ' }
+                google()
+                mavenCentral()
+            }
+        }
+
+        rootProject.name = 'app'
+        include ':app'
+        EOF
+
+    - name: Build Debug APK
+      run: ./gradlew assembleDebug --no-daemon
+
+    - name: Deploy APK to output branch
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+
+        # 切换到 output 分支或创建它
+        if git ls-remote --heads origin output | grep output; then
+          git fetch origin output
+          git checkout output
+        else
+          git checkout --orphan output
+          git rm -rf .
+        fi
+
+        # 复制最新 APK 到根目录
+        cp app/build/outputs/apk/debug/app-debug.apk ./app-debug.apk
+
+        # 提交并推送
+        git add -f app-debug.apk
+        git commit -m "ci: update built APK $(date +'%Y-%m-%d %H:%M:%S')"
+
+        # 强制推送到 output 分支（确保更新）
+        git push origin output --force
