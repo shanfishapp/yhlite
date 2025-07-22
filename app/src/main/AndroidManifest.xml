@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yhchatlite.app">
+    xmlns:tools="http://schemas.android.com/tools"> <!-- 添加 tools 命名空间 -->
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -10,9 +10,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.YHChatLiteApp"
-        android:usesCleartextTraffic="false">
+        android:usesCleartextTraffic="false"
+        tools:targetApi="n"> <!-- 解决 usesCleartextTraffic 警告 -->
+        
         <activity
-            android:name=".LoginActivity"
+            android:name="com.yhchatlite.app.LoginActivity" <!-- 使用完整类名 -->
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
