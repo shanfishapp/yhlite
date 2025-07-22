@@ -36,31 +36,6 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-gradle-
 
-    - name: Configure Aliyun Maven Mirror
-      run: |
-        cat > settings.gradle << 'EOF'
-        pluginManagement {
-            repositories {
-                gradlePluginPortal()
-                google()
-                mavenCentral()
-            }
-        }
-
-        dependencyResolutionManagement {
-            repositoriesMode.set(PREFER_SETTINGS)
-            repositories {
-                maven { url 'https://maven.aliyun.com/repository/google ' }
-                maven { url 'https://maven.aliyun.com/repository/public ' }
-                google()
-                mavenCentral()
-            }
-        }
-
-        rootProject.name = 'app'
-        include ':app'
-        EOF
-
     - name: Build Debug APK
       run: ./gradlew assembleDebug --no-daemon
 
