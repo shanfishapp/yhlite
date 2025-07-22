@@ -51,6 +51,4 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
-tasks.findByName('checkDebugAarMetadata') {
-    doNotTrackState("Reason: Avoid accessing unreadable inputs or outputs.")
-}
+tasks.findByName('checkDebugAarMetadata')?.doNotTrackState("Avoid accessing unreadable inputs or outputs.")
