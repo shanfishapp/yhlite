@@ -43,7 +43,7 @@ fun MineScreen(
             text = "个人中心",
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.padding(bottom = 32.dp)
-        
+        )
         Button(
             onClick = { onLogout() },
             modifier = Modifier
