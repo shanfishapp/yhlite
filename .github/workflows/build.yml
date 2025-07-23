@@ -38,27 +38,9 @@ jobs:
 
     - name: Build Debug APK
       run: ./gradlew assembleDebug --no-daemon
-
-    - name: Deploy APK to output branch
-      run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
-
-        # 切换到 output 分支或创建它
-        if git ls-remote --heads origin output | grep output; then
-          git fetch origin output
-          git checkout output
-        else
-          git checkout --orphan output
-          git rm -rf .
-        fi
-
-        # 复制最新 APK 到根目录
-        cp app/build/outputs/apk/debug/app-debug.apk ./app-debug.apk
-
-        # 提交并推送
-        git add -f app-debug.apk
-        git commit -m "ci: update built APK $(date +'%Y-%m-%d %H:%M:%S')"
-
-        # 强制推送到 output 分支（确保更新）
-        git push origin output --force
+    - name: Upload Debug APK  
+      uses: actions/upload-artifact@v4  
+      with:  
+        name: debug-apk-${{ github.run_number }}  
+        path: app/build/outputs/apk/debug/app-debug.apk  
+        retention-days: 30
