@@ -2,8 +2,6 @@
 package com.yhchat.community.ui.screens.mine
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -21,7 +19,6 @@ fun MineScreen(
     navController: NavController,
     onLogout: () -> Unit = { viewModel.logout() }
 ) {
-    // 观察退出登录后的导航状态
     LaunchedEffect(viewModel.shouldNavigateToLogin) {
         viewModel.shouldNavigateToLogin.collect { shouldNavigate ->
             if (shouldNavigate) {
@@ -47,15 +44,14 @@ fun MineScreen(
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.padding(bottom = 32.dp)
         
-        // 修改后的退出登录按钮
         Button(
             onClick = { onLogout() },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(48.dp), // 与LoginScreen按钮相同高度
+                .height(48.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFD32F2F), // 红色背景
-                contentColor = Color.White // 白色文字
+                containerColor = Color(0xFFD32F2F),
+                contentColor = Color.White
             ),
             elevation = ButtonDefaults.buttonElevation(
                 defaultElevation = 2.dp,
