@@ -13,6 +13,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import java.io.IOException
+import android.webkit.WebView
 
 class LoginActivity : AppCompatActivity() {
 
@@ -62,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         val deviceId = DeviceIdManager.getDeviceId(this)
-        val url = "https://chat-go.jwzhd.com/v1/user/email-login "
+        val url = "https://chat-go.jwzhd.com/v1/user/email-login"
 
         val jsonBody = JSONObject().apply {
             put("email", email)
