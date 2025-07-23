@@ -153,25 +153,30 @@ fun AppEntryPoint(
             )
         }
         composable("main") {
-            // 3. 修改 onLogout 回调，使其更新 isUserLoggedIn 状态
+            val lifecycleOwner = androidx.compose.ui.platform.LocalLifecycleOwner.current
+    
             MainScreen(
                 onLogout = {
                     loginViewModel.logout()
                     secureStorage.clearToken()
-                    // 不再需要手动操作外部 navController 的栈
-                    // 只需确保 secureStorage.getToken() 返回 null 即可
-                    // isUserLoggedIn 状态会因 remember(secureStorage.getToken()) 而自动更新
-                    // 该更新会触发 AppEntryPoint 重组，进而使 NavHost 导航到 "login"
-                    // 注意：由于 Compose 的机制，直接赋值 isUserLoggedIn = false 可能不会触发重组
-                    // 因为 isUserLoggedIn 是通过 remember { mutableStateOf(...) } 创建的。
-                    // 我们依赖的是 secureStorage.getToken() 的变化来触发 remember 重新计算。
-                    // 如果上述方法在你的环境中不触发重组，可以考虑使用一个额外的状态变量
-                    // 或者使用 LaunchedEffect 监听 getToken() 的变化。
-                    // 但在此处，我们期望 secureStorage.clearToken() 导致 getToken() 返回 null,
-                    // 从而触发 remember 块重新执行，将 isUserLoggedIn 设为 false。
+                    // 直接执行导航，不依赖ViewModel的状态
+                    navController.navigate("login") {
+                        popUpTo(navController.graph.startDestinationId) { inclusive = true }
+                    }
                 },
                 loginViewModel = loginViewModel
             )
+            
+            // 监听ViewModel的登出状态（备用方案）
+            androidx.compose.runtime.LaunchedEffect(loginViewModel.logoutResult.value) {
+                if (loginViewModel.logoutResult.value) {
+                    loginViewModel.clearLogoutResult()
+                    secureStorage.clearToken()
+                    navController.navigate("login") {
+                        popUpTo(navController.graph.startDestinationId) { inclusive = true }
+                    }
+                }
+            }
         }
     }
 }
