@@ -41,7 +41,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "11"  // 改为 JDK 11
+        jvmTarget = "17"  // 改为 JDK 11
         freeCompilerArgs = listOf(
             "-opt-in=kotlin.RequiresOptIn",
             "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
