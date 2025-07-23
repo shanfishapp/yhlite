@@ -20,27 +20,36 @@ class AuthRepository(private val context: Context) {
                 deviceId = deviceId,
                 platform = "android"
             )
+            
+            println("Sending login request: $loginRequest")
+            
             val response = apiService.emailLogin(loginRequest)
             
+            println("Received response: code=${response.code()}, isSuccessful=${response.isSuccessful}")
+            
             if (response.isSuccessful) {
-                response.body()?.let { loginResponse ->
+                val loginResponse = response.body()
+                println("Response body: $loginResponse")
+                
+                if (loginResponse != null) {
                     // 保存token到本地
                     loginResponse.data?.token?.let { token ->
                         tokenManager.saveToken(token)
+                        println("Token saved: $token")
                     }
                     Result.success(loginResponse)
-                } ?: run {
+                } else {
                     Result.failure(Exception("Empty response body"))
                 }
             } else {
-                Result.failure(Exception("HTTP ${response.code()}: ${response.message()}"))
+                val errorBody = response.errorBody()?.string()
+                println("Error body: $errorBody")
+                Result.failure(Exception("HTTP ${response.code()}: ${response.message()}, Error: $errorBody"))
             }
         } catch (e: Exception) {
-            if (e.message?.contains("JsonReader.setLenient") == true) {
-                Result.failure(Exception("服务器返回的数据格式不正确"))
-            } else {
-                Result.failure(e)
-            }
+            println("Exception occurred: ${e.message}")
+            e.printStackTrace()
+            Result.failure(e)
         }
     }
     

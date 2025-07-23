@@ -175,14 +175,12 @@ fun TermsText() {
         onClick = { offset ->
             annotatedString.getStringAnnotations("terms", offset, offset)
                 .firstOrNull()?.let {
-                    val intent = Intent(Intent.ACTION_VIEW).apply {
-                        data = Uri.parse("file:///android_asset/terms.html")
-                        putExtra("title", "服务条款")
-                    }
+                    // 启动 WebViewActivity 显示 terms.html
+                    val intent = Intent(context, WebViewActivity::class.java)
                     try {
                         context.startActivity(intent)
                     } catch (e: Exception) {
-                        // 如果无法打开assets中的文件，可以使用WebViewActivity
+                        e.printStackTrace()
                     }
                 }
         }
