@@ -33,6 +33,7 @@ import com.yhchat.community.security.SecureStorage
 import com.yhchat.community.security.UserPreferences
 import com.yhchat.community.ui.navigation.BottomNavItem
 import com.yhchat.community.ui.screens.community.CommunityScreen
+import com.yhchat.community.viewmodels.RegisterViewModel
 import com.yhchat.community.ui.screens.contacts.ContactsScreen
 import com.yhchat.community.ui.screens.discover.DiscoverScreen
 import com.yhchat.community.ui.screens.message.MessageScreen
