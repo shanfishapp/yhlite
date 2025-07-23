@@ -128,24 +128,30 @@ fun AppEntryPoint(
             )
         }
         
-        composable("register") {
-            RegisterScreen(
-                onRegisterSuccess = {
-                    navController.navigate("login") {
-                        popUpTo("register") { inclusive = true }
-                    }
-                },
-                viewModel = viewModel<RegisterViewModel>()
-            )
-        }
+        composable("register") {  
+            RegisterScreen(  
+                onRegisterSuccess = {  
+                    navController.navigate("login") {  
+                        popUpTo("register") { inclusive = true }  
+                    }  
+                },  
+                onNavigateToLogin = {  
+                    navController.navigate("login") {  
+                        popUpTo("register") { inclusive = true }  
+                    }  
+                },  
+                viewModel = viewModel<RegisterViewModel>()  
+            )  
+}
         
         composable("main") {
             MainScreen(
                 onLogout = {
                     loginViewModel.logout()
                     secureStorage.clearToken()
+                    // 先清除当前的main导航栈
                     navController.navigate("login") {
-                        popUpTo(0) { inclusive = true }
+                        popUpTo(navController.graph.id) { inclusive = true }
                     }
                 },
                 loginViewModel = loginViewModel

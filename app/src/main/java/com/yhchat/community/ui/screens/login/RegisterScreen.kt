@@ -8,10 +8,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.yhchat.community.viewmodels.RegisterViewModel
 
-@Composable
-fun RegisterScreen(
-    onRegisterSuccess: () -> Unit,
-    viewModel: RegisterViewModel
+@Composable  
+fun RegisterScreen(  
+    onRegisterSuccess: () -> Unit,  
+    onNavigateToLogin: () -> Unit, // 新增返回登录的回调  
+    viewModel: RegisterViewModel  
 ) {
     var phoneNumber by remember { mutableStateOf("") }
     var verificationCode by remember { mutableStateOf("") }
@@ -141,6 +142,14 @@ fun RegisterScreen(
                 } else {
                     Text("注册")
                 }
+            }
+            Spacer(modifier = Modifier.height(16.dp))  
+  
+            TextButton(  
+                onClick = onNavigateToLogin,  
+                modifier = Modifier.fillMaxWidth()  
+            ) {  
+                Text("已有账号？返回登录")  
             }
         }
     }
