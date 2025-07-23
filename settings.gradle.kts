@@ -1,4 +1,3 @@
-// settings.gradle.kts
 pluginManagement {
     repositories {
         google()
@@ -6,14 +5,13 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_RELOAD)
     repositories {
         google()
         mavenCentral()
     }
 }
 
-rootProject.name = "YunhuCommunity"
+rootProject.name = "ChatApp"
 include(":app")
