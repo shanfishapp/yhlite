@@ -22,7 +22,7 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1+  // 改为 JDK 11（避免兼容性问题）
+        sourceCompatibility = JavaVersion.VERSION_17  // 改为 JDK 11（避免兼容性问题）
         targetCompatibility = JavaVersion.VERSION_17
     }
 
