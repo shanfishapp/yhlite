@@ -1,9 +1,9 @@
 package com.shanfishapp.yhlite.ui.activity
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.appcompat.app.AppCompatActivity
 
 class WebViewActivity : AppCompatActivity() {
 

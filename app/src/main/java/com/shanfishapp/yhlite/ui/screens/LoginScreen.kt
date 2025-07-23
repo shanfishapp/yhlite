@@ -176,7 +176,7 @@ fun TermsText() {
             annotatedString.getStringAnnotations("terms", offset, offset)
                 .firstOrNull()?.let {
                     // 启动 WebViewActivity 显示 terms.html
-                    val intent = Intent(context, WebViewActivity::class.java)
+                    val intent = Intent(context, com.shanfishapp.yhlite.ui.activity.WebViewActivity::class.java)
                     try {
                         context.startActivity(intent)
                     } catch (e: Exception) {

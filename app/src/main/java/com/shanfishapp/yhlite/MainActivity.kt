@@ -29,8 +29,8 @@ class MainActivity : ComponentActivity() {
                     Box(modifier = Modifier.fillMaxSize()) {
                         LoginScreen(viewModel = loginViewModel)
                         
-                        // 添加调试按钮
-                        if (BuildConfig.DEBUG) {
+                        // 添加调试按钮（仅在Debug模式下显示）
+                        if (Config.DEBUG_MODE) {
                             Button(
                                 onClick = {
                                     startActivity(Intent(this, com.shanfishapp.yhlite.ui.activity.LogActivity::class.java))
