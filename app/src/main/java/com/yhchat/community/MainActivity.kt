@@ -121,7 +121,7 @@ fun AppEntryPoint(
                     }
                 },
                 viewModel = loginViewModel,
-                onRegisterClick = {
+                onNavigateToRegister = {
                     navController.navigate("register")
                 }
             )
