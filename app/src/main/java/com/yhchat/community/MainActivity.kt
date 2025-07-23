@@ -134,7 +134,7 @@ fun AppEntryPoint(
                         popUpTo("register") { inclusive = true }
                     }
                 },
-                viewModel = viewModel(factory = LoginViewModelFactory(secureStorage))
+                viewModel = viewModel<RegisterViewModel>()
             )
         }
         

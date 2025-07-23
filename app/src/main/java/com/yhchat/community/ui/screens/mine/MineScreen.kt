@@ -29,7 +29,6 @@ fun MineScreen(
         
         Button(
             onClick = {
-                viewModel.logout()
                 onLogout()
             },
             colors = ButtonDefaults.buttonColors(
