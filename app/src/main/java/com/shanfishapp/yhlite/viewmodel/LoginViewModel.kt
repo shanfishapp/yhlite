@@ -1,18 +1,17 @@
 package com.shanfishapp.yhlite.viewmodel
 
+import android.content.Context
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shanfishapp.yhlite.data.repository.AuthRepository
-import com.shanfishapp.yhlite.utils.DeviceIdGenerator
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class LoginViewModel : ViewModel() {
-    private val repository = AuthRepository()
-    private val deviceId = DeviceIdGenerator.generateDeviceId()
-
+class LoginViewModel(private val context: Context) : ViewModel() {
+    private val repository = AuthRepository(context)
+    
     private val _loginState = MutableStateFlow<LoginState>(LoginState.Idle)
     val loginState: StateFlow<LoginState> = _loginState
 
@@ -30,7 +29,7 @@ class LoginViewModel : ViewModel() {
     fun login(email: String, password: String) {
         viewModelScope.launch {
             _loginState.value = LoginState.Loading
-            repository.login(email, password, deviceId)
+            repository.login(email, password)
                 .onSuccess { response ->
                     if (response.code == 1) {
                         _loginState.value = LoginState.Success(response.data?.token)
@@ -67,5 +66,9 @@ class LoginViewModel : ViewModel() {
     fun showSnackbar(message: String) {
         errorMessage.value = message
         showErrorDialog.value = true
+    }
+    
+    fun hasToken(): Boolean {
+        return repository.hasToken()
     }
 }
