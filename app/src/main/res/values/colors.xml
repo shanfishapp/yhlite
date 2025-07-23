@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="purple_200">#E1BEE7</color> <!-- 浅紫色系 -->
-    <color name="purple_500">#BA68C8</color>
-    <color name="purple_700">#8E24AA</color>
-    <color name="gray_light">#f5f5f5</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-</resources>
