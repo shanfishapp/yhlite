@@ -149,10 +149,9 @@ fun AppEntryPoint(
                 onLogout = {
                     loginViewModel.logout()
                     secureStorage.clearToken()
-                    // 先清除当前的main导航栈
-                    navController.navigate("login") {
-                        popUpTo(navController.graph.id) { inclusive = true }
-                    }
+                    // 最彻底的方法：清空所有回退栈
+                    navController.popBackStack(navController.graph.startDestinationId, true)
+                    navController.navigate("login")
                 },
                 loginViewModel = loginViewModel
             )
