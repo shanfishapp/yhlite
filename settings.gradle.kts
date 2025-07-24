@@ -1,19 +1,18 @@
-// settings.gradle.kts
 pluginManagement {
     repositories {
-        google()  // 添加 Google Maven 仓库
+        google()
         mavenCentral()
         gradlePluginPortal()
     }
 }
 
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS) // 使用设置中的仓库
     repositories {
-        google()  // 添加 Google Maven 仓库
+        google()
         mavenCentral()
     }
 }
 
-rootProject.name = "MD3"
+rootProject.name = "MyMD3App"
 include(":app")

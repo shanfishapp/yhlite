@@ -1,11 +1,11 @@
 // 根项目 build.gradle.kts
 buildscript {
     repositories {
-        google()  // 添加 Google Maven 仓库
+        google()
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:8.1.2")  // 添加 Android Gradle 插件
+        classpath("com.android.tools.build:gradle:8.1.2")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.10")
     }
 }
@@ -16,13 +16,7 @@ plugins {
     id("org.jetbrains.kotlin.android") version "1.9.10" apply false
 }
 
-allprojects {
-    repositories {
-        google()  // 确保所有项目都能访问 Google Maven
-        mavenCentral()
-    }
-}
-
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+// 修复废弃的 buildDir 用法
+tasks.register<Delete>("clean") {
+    delete(layout.buildDirectory)
 }
