@@ -1,3 +1,5 @@
+package com.shanfish.app.ui.screens
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
@@ -9,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import com.shanfish.app.ui.components.TextWithDividers
 
 @Composable
 fun LoginScreen(
