@@ -11,15 +11,28 @@ extJunit = "1.1.5"
 espresso = "3.5.1"
 
 [libraries]
+# 核心库
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-androidx-lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+
+# 修改这一行：别名从 androidx-lifecycle-runtime 改为 androidx-lifecycle-runtime-ktx
+# 这样在 build.gradle.kts 中 libs.androidx.lifecycle.runtime.ktx 才能正确解析
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 
+# Compose BOM
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 
+# 测试库
 junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-test-ext = { group = "androidx.test.ext", name = "junit", version.ref = "extJunit" }
-androidx-test-espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+
+# 修改这一行：别名从 androidx-test-ext 改为 androidx-test-ext-junit
+# 这样在 build.gradle.kts 中 libs.androidx.test.ext.junit 才能正确解析
+androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "extJunit" }
+
+# 修改这一行：别名从 androidx-test-espresso 改为 androidx-test-espresso-core
+# 这样在 build.gradle.kts 中 libs.androidx.test.espresso.core 才能正确解析
+androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "androidGradlePlugin" }
