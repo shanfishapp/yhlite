@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="Theme.ChatApp" parent="android:Theme.Material.Light.NoActionBar" />
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.MyMD3App" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- 完全不需要定义任何颜色 -->
+        <!-- 只需确保使用Material3主题作为父主题 -->
+    </style>
 </resources>
