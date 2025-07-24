@@ -6,15 +6,12 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
@@ -49,19 +46,21 @@ fun MainScreen() {
 
     val options = listOf("选项1", "选项2", "选项3", "选项4")
 
-    ModalBottomSheet(
-        onDismissRequest = { showBottomSheet = false },
-        sheetState = rememberModalBottomSheetState()
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
+    if (showBottomSheet) {
+        ModalBottomSheet(
+            onDismissRequest = { showBottomSheet = false },
+            sheetState = rememberModalBottomSheetState()
         ) {
-            Text("底部弹窗", style = MaterialTheme.typography.headlineSmall)
-            Spacer(modifier = Modifier.height(16.dp))
-            Button(onClick = { showBottomSheet = false }) {
-                Text("关闭")
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                Text("底部弹窗", style = MaterialTheme.typography.headlineSmall)
+                Spacer(modifier = Modifier.height(16.dp))
+                Button(onClick = { showBottomSheet = false }) {
+                    Text("关闭")
+                }
             }
         }
     }
@@ -295,15 +294,6 @@ fun MainScreen() {
             }
 
             item {
-                RangeSlider(
-                    value = 20f..80f,
-                    onValueChange = { /*TODO*/ },
-                    valueRange = 0f..100f,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
-
-            item {
                 Text("进度组件", style = MaterialTheme.typography.headlineSmall)
             }
 
@@ -393,45 +383,6 @@ fun MainScreen() {
                         Switch(checked = true, onCheckedChange = {})
                     }
                 )
-            }
-
-            item {
-                Text("分段控制器", style = MaterialTheme.typography.headlineSmall)
-            }
-
-            item {
-                SegmentedButtonRow {
-                    SegmentedButton(
-                        selected = true,
-                        onClick = { /*TODO*/ },
-                        shape = SegmentedButtonDefaults.itemShape(
-                            index = 0,
-                            count = 3
-                        )
-                    ) {
-                        Text("选项1")
-                    }
-                    SegmentedButton(
-                        selected = false,
-                        onClick = { /*TODO*/ },
-                        shape = SegmentedButtonDefaults.itemShape(
-                            index = 1,
-                            count = 3
-                        )
-                    ) {
-                        Text("选项2")
-                    }
-                    SegmentedButton(
-                        selected = false,
-                        onClick = { /*TODO*/ },
-                        shape = SegmentedButtonDefaults.itemShape(
-                            index = 2,
-                            count = 3
-                        )
-                    ) {
-                        Text("选项3")
-                    }
-                }
             }
 
             item {
