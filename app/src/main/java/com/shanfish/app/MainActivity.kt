@@ -1,17 +1,23 @@
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.shanfish.app.ui.components.LoginScreen
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.dp
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MaterialTheme { // 使用你的应用主题
+            MaterialTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -25,39 +31,35 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun AppNavigation() {
-    val isLogin = remember { mutableStateOf(false) } // 控制登录状态的变量
+    var isLogin by remember { mutableStateOf(false) }
 
-    if (isLogin.value) {
-        // 将来替换为消息界面
+    if (isLogin) {
         PlaceholderMessageScreen(
-            onLogout = { isLogin.value = false } // 提供退出登录的回调
+            onLogout = { isLogin = false }
         )
     } else {
         LoginScreen(
-            onLoginClick = { 
-                // 这里模拟登录成功
-                isLogin.value = true 
-                // 实际项目中这里应该调用认证逻辑
-            }
+            onLoginClick = { isLogin = true }
         )
     }
 }
 
 @Composable
 fun PlaceholderMessageScreen(onLogout: () -> Unit) {
-    Surface(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "消息界面 (待实现)",
-                style = MaterialTheme.typography.headlineMedium
-            )
-            Button(onClick = onLogout) {
-                Text("退出登录")
-            }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(24.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "消息界面 (待实现)",
+            style = MaterialTheme.typography.headlineMedium
+        )
+        Spacer(modifier = Modifier.height(24.dp))
+        Button(onClick = onLogout) {
+            Text("退出登录")
         }
     }
 }
