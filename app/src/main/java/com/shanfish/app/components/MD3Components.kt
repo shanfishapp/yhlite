@@ -1,4 +1,4 @@
-package com.example.mymd3app.components
+package com.shanfish.app.components
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
