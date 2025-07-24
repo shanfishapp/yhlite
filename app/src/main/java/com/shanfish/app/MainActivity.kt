@@ -59,8 +59,149 @@ fun MainScreen() {
             ) {
                 Text("底部弹窗", style = MaterialTheme.typography.headlineSmall)
                 Spacer(modifier = Modifier.height(16.dp))
-                Button(onClick = { showBottomSheet = false }) {
-                    Text("关闭")
+                Text("添加", style = MaterialTheme.typography.headlineSmall)
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { /* 点击事件 */ }
+                        .padding(vertical = 8.dp), // 卡片间距
+                    shape = MaterialTheme.shapes.medium, // 使用主题圆角
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant // 卡片背景色
+                    )
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp)
+                    ) {
+                        Text("添加好友", style = MaterialTheme.typography.titleMedium)
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text("根据ID添加好友", style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { /* 点击事件 */ }
+                        .padding(vertical = 8.dp), // 卡片间距
+                    shape = MaterialTheme.shapes.medium, // 使用主题圆角
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant // 卡片背景色
+                    )
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp)
+                    ) {
+                        Text("添加群聊", style = MaterialTheme.typography.titleMedium)
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text("根据ID添加群聊", style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { /* 点击事件 */ }
+                        .padding(vertical = 8.dp), // 卡片间距
+                    shape = MaterialTheme.shapes.medium, // 使用主题圆角
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant // 卡片背景色
+                    )
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp)
+                    ) {
+                        Text("填空机器人", style = MaterialTheme.typography.titleMedium)
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text("使用ID添加机器人", style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+                Text("创建")
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { /* 点击事件 */ }
+                        .padding(vertical = 8.dp), // 卡片间距
+                    shape = MaterialTheme.shapes.medium, // 使用主题圆角
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant // 卡片背景色
+                    )
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp)
+                    ) {
+                        Text("创建群聊", style = MaterialTheme.typography.titleMedium)
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text("创建属于你自己的群聊", style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { /* 点击事件 */ }
+                        .padding(vertical = 8.dp), // 卡片间距
+                    shape = MaterialTheme.shapes.medium, // 使用主题圆角
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant // 卡片背景色
+                    )
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp)
+                    ) {
+                        Text("创建机器人", style = MaterialTheme.typography.titleMedium)
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text("创建属于你自己的机器人", style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+                Text("邀请")
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { /* 点击事件 */ }
+                        .padding(vertical = 8.dp), // 卡片间距
+                    shape = MaterialTheme.shapes.medium, // 使用主题圆角
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant // 卡片背景色
+                    )
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp)
+                    ) {
+                        Text("邀请QQ好友", style = MaterialTheme.typography.titleMedium)
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text("邀请QQ好友加入云湖", style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { /* 点击事件 */ }
+                        .padding(vertical = 8.dp), // 卡片间距
+                    shape = MaterialTheme.shapes.medium, // 使用主题圆角
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant // 卡片背景色
+                    )
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp)
+                    ) {
+                        Text("邀请微信好友", style = MaterialTheme.typography.titleMedium)
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text("邀请微信好友加入云湖", style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center // 水平居中
+                ) {
+                    Button(
+                        onClick = { showBottomSheet = false } 
+                    ) {
+                        Text("超级文件传输")
+                    }   
+                    Button(
+                        onClick = { showBottomSheet = false } 
+                    ) {
+                        Text("扫一扫")
+                    }
                 }
             }
         }
@@ -72,7 +213,13 @@ fun MainScreen() {
             title = { Text("弹窗标题") },
             text = { Text("这是弹窗内容，可以包含更多详细信息") },
             confirmButton = {
-                TextButton(onClick = { showDialog = false }) {
+                Button(
+                    onClick = { showDialog = false },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = MaterialTheme.colorScheme.onPrimary
+                    )
+                ) {
                     Text("确认")
                 }
             },
@@ -123,8 +270,8 @@ fun MainScreen() {
             TopAppBar(
                 title = { Text("ShanFishApp - MD3 组件预览") },
                 actions = {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(Icons.Default.MoreVert, contentDescription = "更多")
+                    IconButton(onClick = { showBottomSheet = true }) {
+                        Icon(Icons.Default.Add, contentDescription = "更多")
                     }
                 }
             )
