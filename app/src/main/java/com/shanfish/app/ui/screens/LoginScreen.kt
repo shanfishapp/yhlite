@@ -22,16 +22,33 @@ fun LoginScreen(
     var acceptEula by remember { mutableStateOf(false) }
     var isPasswordVisible by remember { mutableStateOf(false) }
     var showDialog by remember { mutableStateOf(false) }
+    var dialogEula by remember { mutableStateOf(false) }
     var dialogMessage by remember { mutableStateOf("") }
+    var titleMessage by remember { mutableStateOf("提示") }
 
     if (showDialog) {
         AlertDialog(
             onDismissRequest = { showDialog = false },
-            title = { Text("登录结果") },
+            title = { Text(titleMessage) },
             text = { Text(dialogMessage) },
             confirmButton = {
-                Button(onClick = { showDialog = false }) {
-                    Text("确定")
+                Button(onClick = {
+                    showDialog = false
+                    acceptEula = true
+                } ) {
+                    if (dialogEula) {
+                        Text("同意")
+                    } else {
+                        Text("确认")
+                    }
+                }
+                if (dialogEula) {
+                    Button(onClick = {
+                        showDialog = false
+                        acceptEula = false
+                    } ) {
+                        Text("拒绝")
+                    }
                 }
             }
         )
@@ -84,7 +101,14 @@ fun LoginScreen(
         ) {
             Checkbox(
                 checked = acceptEula,
-                onCheckedChange = { acceptEula = it }
+                onCheckedChange = { 
+                    acceptEula = it
+                    dialogEula = true
+                    titleMessage = "同意协议"
+                    dialogMessage = "在使用本软件前，您需要阅读《软件使用协议》和《隐私协议》\n\n如果您不同意本软件的上述协议，您将无法使用软件。"
+                    showDialog = true
+                    
+                }
             )
             Text("我已阅读并同意 使用协议 和 隐私协议", style = MaterialTheme.typography.bodyMedium)
         }
