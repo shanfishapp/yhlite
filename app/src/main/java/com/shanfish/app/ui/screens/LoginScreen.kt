@@ -99,6 +99,7 @@ fun LoginScreen(
                     dialogMessage = "邮箱或密码未填写，请填写完整"
                     showDialog = true
                 } else {
+                    onLoginClick()
                     dialogMessage = "登录成功，欢迎！"
                     showDialog = true
                 }
@@ -107,9 +108,9 @@ fun LoginScreen(
         ) {
             Text("登录")
         }
-        Spacer(modifier = Modifier.height(8ldp))
+        Spacer(modifier = Modifier.height(8.dp))
         TextWithDividers("或者")
-        Spacer(modifier = Modifier.height(8ldp))
+        Spacer(modifier = Modifier.height(8.dp))
         OutlinedButton(
             onClick = {
                 dialogMessage = "注册 功能暂未开放"
