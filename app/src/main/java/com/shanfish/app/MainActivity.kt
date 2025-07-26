@@ -9,7 +9,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.shanfish.app.components.ScreenManager as Nav
+import com.shanfish.app.ui.components.ScreenManager as Nav
 import com.shanfish.app.ui.screens.LoginScreen
 import com.shanfish.app.ui.screens.RegisterScreen
 
@@ -20,8 +20,7 @@ class MainActivity : ComponentActivity() {
         // 精确注册屏幕（使用明确ID）
         Nav.register("login") { 
             LoginScreen(
-                onLoginClick = { Nav.jumpTo("message") },
-                onRegisterClick = { Nav.jumpTo("register") }
+                onLoginClick = { Nav.jumpTo("message") }
             )
         }
         

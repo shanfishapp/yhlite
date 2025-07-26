@@ -1,5 +1,5 @@
 package com.shanfish.app.ui.screens
-import com.shanfish.app.components.ScreenManager as Nav
+import com.shanfish.app.ui.components.ScreenManager as Nav
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
