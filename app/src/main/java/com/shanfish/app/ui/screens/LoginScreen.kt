@@ -1,5 +1,5 @@
 package com.shanfish.app.ui.screens
-
+import com.shanfish.app.components.ScreenManager as Nav
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -206,7 +206,7 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(8.dp))
         
         OutlinedButton(
-            onClick = { dialogState = DialogState.Message("注册功能暂未开放") },
+            onClick = { Nav.jumpTo("register") },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("注册")
